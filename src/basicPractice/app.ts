@@ -1,13 +1,38 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-  const result = n1 + n2;
-  if (showResult) {
-    console.log(phrase + result);
-  }
-  return result;
-}
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result: ';
+const person: { name: string; age: number } = {
+  name: 'taku',
+  age: 28,
+};
 
-add(number1, number2, printResult, resultPhrase);
+console.log(person.name);
+
+type Product = {
+  id: string;
+  price: number;
+  tags: string[];
+  details: {
+    title: string;
+    description: string;
+  };
+};
+
+const product: Product = {
+  id: 'aaa111',
+  price: 10,
+  tags: ['good', 'bad'],
+  details: {
+    title: 'Red Carpet',
+    description: 'A great carpet - almost brand-new!',
+  },
+};
+
+const {
+  id,
+  tags: [first],
+  details: { title },
+} = product;
+
+const {
+  tags: [, ff],
+} = product;
+
+console.log(id, first, title, ff);
