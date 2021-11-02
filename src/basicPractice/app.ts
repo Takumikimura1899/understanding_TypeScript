@@ -1,13 +1,26 @@
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: [number, string];
-} = {
+// const person: {
+//   name: string;
+//   age: number;
+//   hobbies: string[];
+//   role: [number, string];
+// } = {
+//   name: 'taku',
+//   age: 28,
+//   hobbies: ['sports', 'Cooking'],
+//   role: [2, 'author'],
+// };
+
+enum Role {
+  ADMIN,
+  READ_ONLY,
+  AUTHOR,
+}
+
+const person = {
   name: 'taku',
   age: 28,
   hobbies: ['sports', 'Cooking'],
-  role: [2, 'author'],
+  role: Role.ADMIN,
 };
 
 // person.role.push("admin")
@@ -20,6 +33,10 @@ console.log(person.name);
 
 for (const hobby of person.hobbies) {
   console.log(hobby.toUpperCase());
+}
+
+if (person.role === Role.ADMIN) {
+  console.log('管理者ユーザー');
 }
 
 type Product = {
