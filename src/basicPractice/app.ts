@@ -1,9 +1,17 @@
-const person: { name: string; age: number } = {
+const person: { name: string; age: number; hobbies: string[] } = {
   name: 'taku',
   age: 28,
+  hobbies: ['sports', 'Cooking'],
 };
 
+let favoriteActivities: (string | number)[];
+favoriteActivities = ['Sports', 1];
+
 console.log(person.name);
+
+for (const hobby of person.hobbies) {
+  console.log(hobby.toUpperCase());
+}
 
 type Product = {
   id: string;
