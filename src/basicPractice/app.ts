@@ -1,8 +1,17 @@
-const person: { name: string; age: number; hobbies: string[] } = {
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string];
+} = {
   name: 'taku',
   age: 28,
   hobbies: ['sports', 'Cooking'],
+  role: [2, 'author'],
 };
+
+// person.role.push("admin")
+// person.role[1] = 10
 
 let favoriteActivities: (string | number)[];
 favoriteActivities = ['Sports', 1];
