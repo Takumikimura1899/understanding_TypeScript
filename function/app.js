@@ -1,3 +1,4 @@
+"use strict";
 function add(n1, n2) {
     return n1 + n2;
 }
@@ -17,3 +18,10 @@ combineValues = add;
 // combineValues = 3
 console.log(combineValues(8, 8));
 printResult(add(5, 12));
+function sendRequest(data, cb) {
+    return cb({ data: 'Hi there!' });
+}
+sendRequest('send this!', function (response) {
+    console.log(response);
+    return true;
+});
