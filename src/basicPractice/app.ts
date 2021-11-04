@@ -24,3 +24,12 @@ combineValues = add;
 console.log(combineValues(8, 8));
 
 printResult(add(5, 12));
+
+function sendRequest(data: string, cb: (response: any) => void) {
+  return cb({ data: 'Hi there!' });
+}
+
+sendRequest('send this!', (response) => {
+  console.log(response);
+  return true;
+});
