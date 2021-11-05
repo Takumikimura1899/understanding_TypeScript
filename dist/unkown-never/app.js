@@ -11,3 +11,4 @@ function generateError(message, code) {
 }
 const result = generateError('エラーが発生しました', 500);
 console.log(result);
+//# sourceMappingURL=app.js.map
