@@ -23,17 +23,47 @@ class Department {
   }
 }
 
-const accounting = new Department('d1', 'Accounting');
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    //ベースクラスのconstructorを呼び出すことができる
+    super(id, 'IT');
+    this.admins = admins;
+  }
+}
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
+class AccountDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    //ベースクラスのconstructorを呼び出すことができる
+    super(id, 'Accounting');
+  }
 
-accounting.describe();
-accounting.printEmployeeInformation();
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const it = new ITDepartment('d1', ['Max']);
+
+it.addEmployee('Max');
+it.addEmployee('Manu');
+
+it.describe();
+it.printEmployeeInformation();
+
+console.log(it);
+
+const accounting = new AccountDepartment('d2', []);
+accounting.addReport('Something');
+accounting.printReports();
 
 // 以下のコードのように外部からアクセスするとバリデーションなどの処理を無視してしまう恐れがあるので、
 // アクセス方法を内部のみに制御する。private デフォルトではpublic
-// accounting.employees[2] = 'Anna';
+// it.employees[2] = 'Anna';
 
-const accountingCopy = { name: 'Dummy', describe: accounting.describe };
-// accountingCopy.describe();
+// const itCopy = { name: 'Dummy', describe: it.describe };
+// itCopy.describe();
