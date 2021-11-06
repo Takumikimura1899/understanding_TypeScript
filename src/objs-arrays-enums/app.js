@@ -32,3 +32,4 @@ const product = {
 const { id, tags: [first], details: { title }, } = product;
 const { tags: [, ff], } = product;
 console.log(id, first, title, ff);
+//# sourceMappingURL=app.js.map
