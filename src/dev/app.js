@@ -45,6 +45,13 @@ class AccountDepartment extends Department {
         }
         this.addReport(value);
     }
+    static getInstance() {
+        if (AccountDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountDepartment('d2', []);
+        return this.instance;
+    }
     describe() {
         console.log('会計部門 - ID:' + this.id);
     }
@@ -70,7 +77,9 @@ it.addEmployee('Manu');
 it.describe();
 it.printEmployeeInformation();
 console.log(it);
-const accounting = new AccountDepartment('d2', []);
+const accounting = AccountDepartment.getInstance();
+const accounting2 = AccountDepartment.getInstance();
+console.log(accounting, accounting2);
 accounting.mostRecentReport = '通期会計レポート';
 accounting.addReport('Something');
 accounting.addEmployee('Max');
