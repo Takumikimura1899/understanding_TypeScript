@@ -9,9 +9,6 @@ class Department {
     static createEmployee(name) {
         return { name };
     }
-    describe() {
-        console.log(`Department (${this.id}): ${this.name}`);
-    }
     addEmployee(employee) {
         this.employees.push(employee);
     }
@@ -25,6 +22,9 @@ class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, 'IT');
         this.admins = admins;
+    }
+    describe() {
+        console.log('IT部門 - ID:' + this.id);
     }
 }
 class AccountDepartment extends Department {
@@ -44,6 +44,9 @@ class AccountDepartment extends Department {
             throw new Error('正しい値を設定してください。');
         }
         this.addReport(value);
+    }
+    describe() {
+        console.log('会計部門 - ID:' + this.id);
     }
     addReport(text) {
         this.reports.push(text);
@@ -70,8 +73,9 @@ console.log(it);
 const accounting = new AccountDepartment('d2', []);
 accounting.mostRecentReport = '通期会計レポート';
 accounting.addReport('Something');
-accounting.printReports();
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
-accounting.printEmployeeInformation();
+accounting.describe();
+const dep = new ITDepartment('3', ['aaa']);
+console.log(dep);
 //# sourceMappingURL=app.js.map

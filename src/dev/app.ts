@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   static fiscalYear = 2021;
   // private id:string;
   // name: string;
@@ -9,7 +9,7 @@ class Department {
     return { name };
   }
 
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // this.id = id;
     // this.name = n;
     // これはエラーが出る。静的ではないため。
@@ -17,9 +17,12 @@ class Department {
     console.log(Department.fiscalYear);
   }
 
-  describe(this: Department) {
-    console.log(`Department (${this.id}): ${this.name}`);
-  }
+  // 抽象メソッド。サブクラスでメソッドのオーバーライドを強制する。このクラス自体にもabstractをつける必要がある。
+  // ここで実装することは出来ないのでメソッド名、引数、戻り値の型定義のみ行う。
+  abstract describe(this: Department): void;
+  // {
+  //    console.log(`Department (${this.id}): ${this.name}`);
+  // }
 
   addEmployee(employee: string) {
     // this.id = "d2"
@@ -38,6 +41,10 @@ class ITDepartment extends Department {
     //ベースクラスのconstructorを呼び出すことができる
     super(id, 'IT');
     this.admins = admins;
+  }
+
+  describe() {
+    console.log('IT部門 - ID:' + this.id);
   }
 }
 
@@ -65,6 +72,10 @@ class AccountDepartment extends Department {
     //ベースクラスのconstructorを呼び出すことができる
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+
+  describe() {
+    console.log('会計部門 - ID:' + this.id);
   }
 
   addReport(text: string) {
@@ -105,12 +116,13 @@ const accounting = new AccountDepartment('d2', []);
 accounting.mostRecentReport = '通期会計レポート';
 accounting.addReport('Something');
 // console.log(accounting.mostRecentReport);
-accounting.printReports();
+// accounting.printReports();
 
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
 
-accounting.printEmployeeInformation();
+// accounting.printEmployeeInformation();
+accounting.describe();
 
 // 以下のコードのように外部からアクセスするとバリデーションなどの処理を無視してしまう恐れがあるので、
 // アクセス方法を内部のみに制御する。private デフォルトではpublic
@@ -118,3 +130,6 @@ accounting.printEmployeeInformation();
 
 // const itCopy = { name: 'Dummy', describe: it.describe };
 // itCopy.describe();
+
+const dep = new ITDepartment('3', ['aaa']);
+console.log(dep);
