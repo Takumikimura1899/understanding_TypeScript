@@ -33,13 +33,35 @@ class ITDepartment extends Department {
 }
 
 class AccountDepartment extends Department {
+  private lastReport: string;
+
+  // 値を取得する為に使用する。
+  // 必ずreturnが必要。外部から.を用いてprivateの値にアクセス可能。
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('レポートが見つかりません');
+  }
+
+  //必ず引数が必要。
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error('正しい値を設定してください。');
+    }
+    this.addReport(value);
+  }
+
   constructor(id: string, private reports: string[]) {
     //ベースクラスのconstructorを呼び出すことができる
     super(id, 'Accounting');
+    this.lastReport = reports[0];
   }
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text;
+    // console.log(this.reports);
   }
 
   printReports() {
@@ -47,7 +69,7 @@ class AccountDepartment extends Department {
   }
 
   // ベースクラスのemployeesに追加するメソッド。
-  // 例えばIT部門にMaxさんは向いてませんよー見たいなメソッド
+  // 例えばAccount部門にMaxさんは向いてませんよーみたいなメソッド
   addEmployee(name: string) {
     if (name === 'Max') {
       return;
@@ -67,7 +89,10 @@ it.printEmployeeInformation();
 console.log(it);
 
 const accounting = new AccountDepartment('d2', []);
+
+accounting.mostRecentReport = '通期会計レポート';
 accounting.addReport('Something');
+// console.log(accounting.mostRecentReport);
 accounting.printReports();
 
 accounting.addEmployee('Max');
