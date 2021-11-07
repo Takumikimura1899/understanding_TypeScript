@@ -1,11 +1,20 @@
 class Department {
+  static fiscalYear = 2021;
   // private id:string;
   // name: string;
   protected employees: string[] = [];
 
+  static createEmployee(name: string) {
+    // 省略型で書いてる。
+    return { name };
+  }
+
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
     // this.name = n;
+    // これはエラーが出る。静的ではないため。
+    // console.log(this.fiscalYear);
+    console.log(Department.fiscalYear);
   }
 
   describe(this: Department) {
@@ -77,6 +86,9 @@ class AccountDepartment extends Department {
     this.employees.push(name);
   }
 }
+
+const employee1 = Department.createEmployee('Max');
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment('d1', ['Max']);
 
