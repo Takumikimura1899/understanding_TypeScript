@@ -9,7 +9,7 @@ interface Greetable extends Named {
 
 class Person implements Greetable {
   name: string;
-  age = 28;
+  age = 29;
   constructor(n: string) {
     this.name = n;
   }
