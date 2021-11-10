@@ -1,8 +1,9 @@
 // インターフェースはオブジェクトがどのような形であるか定義するもの
+interface Named {
+  readonly name: string;
+}
 
-interface Greetable {
-  name: string;
-
+interface Greetable extends Named {
   greet(phrase: string): void;
 }
 
