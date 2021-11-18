@@ -1,26 +1,46 @@
 "use strict";
-let addNum;
-addNum = (n1, n2) => {
-    return n1 + n2;
+const e1 = {
+    name: 'Max',
+    privileges: ['create-server'],
+    startDate: new Date(),
 };
-class Person {
-    constructor(n) {
-        this.age = 28;
-        if (n) {
-            this.name = n;
-        }
+function add(a, b) {
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString();
     }
-    greet(phrase) {
-        if (this.name) {
-            console.log(phrase + ' ' + this.name);
-        }
-        else {
-            console.log('Hi!');
-        }
+    return a + b;
+}
+function printEmployeeInformation(emp) {
+    console.log(emp.name);
+    if ('privileges' in emp) {
+        console.log('Privileges:' + emp.privileges);
+    }
+    if ('startDate' in emp) {
+        console.log('Start Date:' + emp.startDate);
     }
 }
-let user1;
-user1 = new Person();
-user1.greet('Hello,I am');
-console.log(user1);
+printEmployeeInformation({ name: 'Manu', startDate: new Date() });
+class Car {
+    drive() {
+        console.log('運転中...');
+    }
+}
+class Track {
+    drive() {
+        console.log('トラックを運転中...');
+    }
+    loadCargo(amount) {
+        console.log('荷物を載せています...' + amount);
+    }
+}
+const v1 = new Car();
+const v2 = new Track();
+function useVehicle(vehicle) {
+    vehicle.drive();
+    if ('loadCargo' in vehicle) {
+        vehicle.loadCargo(1000);
+    }
+}
+useVehicle(v1);
+useVehicle(v2);
 //# sourceMappingURL=app.js.map
