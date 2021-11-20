@@ -117,3 +117,16 @@ const userInputElement = document.getElementById(
 ) as HTMLInputElement;
 
 userInputElement.value = 'こんにちは';
+
+interface ErrorContainer {
+  // {email:'正しいメールアドレスではありません',username:'ユーザー名に記号を含める事は出来ません'}
+  [prop: string]: string;
+}
+
+// 1もstringとして扱われる
+// 何個入ってても良い。しかしstring:stringである必要がある。
+const errorBag: ErrorContainer = {
+  1: '正しいメールアドレスではありません',
+  username: 'ユーザー名に記号を含めることは出来ません',
+  // id:2
+};
