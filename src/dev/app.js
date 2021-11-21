@@ -1,12 +1,9 @@
 "use strict";
-const names = [];
-names[0].split('');
-const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('終わりました！');
-    }, 2000);
-});
-promise.then((data) => {
-    data.split('');
-});
+function merge(objA, objB) {
+    return Object.assign(objA, objB);
+}
+const mergedObj = merge({ name: 'Max' }, { age: 30 });
+console.log(mergedObj.age);
+const mergedObj2 = merge({ name: 'taku', hobbies: ['Sports'] }, { age: 28 });
+console.log(mergedObj2.hobbies);
 //# sourceMappingURL=app.js.map
