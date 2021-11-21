@@ -16,7 +16,7 @@
 //   data.split('');
 // });
 
-function merge<T, U>(objA: T, objB: U) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
@@ -29,3 +29,19 @@ const mergedObj2 = merge<{ name: string; hobbies: string[] }, { age: number }>(
   { age: 28 }
 );
 console.log(mergedObj2.hobbies);
+
+interface Lengthy {
+  length: number;
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = '値がありません。';
+  if (element.length > 0) {
+    descriptionText = `値は${element.length}個です。`;
+  }
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe('お疲れ様です！'));
+console.log(countAndDescribe([]));
+console.log(countAndDescribe(['Sports', 'Cooking']));
