@@ -20,4 +20,27 @@ function extractAndConvert(obj, key) {
     return `Value:${obj[key]}`;
 }
 console.log(extractAndConvert({ name: 'taku' }, 'name'));
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
+    }
+}
+const textStorage = new DataStorage();
+textStorage.addItem('Data1');
+textStorage.addItem('Data2');
+textStorage.removeItem('Data1');
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
 //# sourceMappingURL=app.js.map
