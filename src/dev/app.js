@@ -16,4 +16,8 @@ function countAndDescribe(element) {
 console.log(countAndDescribe('お疲れ様です！'));
 console.log(countAndDescribe([]));
 console.log(countAndDescribe(['Sports', 'Cooking']));
+function extractAndConvert(obj, key) {
+    return `Value:${obj[key]}`;
+}
+console.log(extractAndConvert({ name: 'taku' }, 'name'));
 //# sourceMappingURL=app.js.map
